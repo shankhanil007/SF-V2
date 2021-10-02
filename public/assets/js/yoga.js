@@ -40,6 +40,10 @@ document.getElementById("pose").addEventListener("change", () => {
   addVideoURL(pose_data[pose_index].video_url);
   percentage = 0;
   percentage_meter(0);
+  if (pose_index == 1) {
+    document.getElementById("mountain").style.display = "none";
+    document.getElementById("triangle").style.display = "block";
+  }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
