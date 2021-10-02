@@ -26,10 +26,14 @@ const pose_data = [
 
 const player = new Plyr("#player", { controls });
 window.player = player;
+const msg = new SpeechSynthesisUtterance(
+  "Checking your pose. Please hold the pose for a moment"
+);
 var pie;
 var circle;
 var pose_index = 0;
 var percentage = 0;
+var speak_count = 0;
 
 document.getElementById("pose").addEventListener("change", () => {
   pose_index = parseInt(document.getElementById("pose").value);
@@ -44,6 +48,13 @@ window.addEventListener("DOMContentLoaded", () => {
   circle = new CircularProgressBar("pie");
   pie = document.querySelectorAll(".pie");
 });
+
+function speak() {
+  if (speak_count == 0) {
+    window.speechSynthesis.speak(msg);
+    speak_count++;
+  }
+}
 
 function percentage_meter(value) {
   pie.forEach((el, index) => {
@@ -72,8 +83,8 @@ function play() {
     ) {
       player.pause();
       this.pause();
+      speak();
       var count = 10;
-
       while (count != 0) {
         $.ajax({
           type: "GET",
