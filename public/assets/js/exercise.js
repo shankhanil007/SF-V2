@@ -28,7 +28,7 @@ function skipping() {
   flag = 0;
   exercise = "skipping";
   document.getElementById("image").src =
-    "https://lh3.googleusercontent.com/proxy/RXVNuwSrjKPVOrla3X1CiJwv3uZ50jYimWYEXMUNdlGkp9sxni1YnuCrMpmiQXmtrCRE9yS4b6s4qRlhXMxNsBPa3oBOyMWPxkYoKsAfXYASB5efDB4GZd5N-ggGCmkBdSoyUE94DAF-6hg8EvzPxoypXp9MX8PgtVXQNQ";
+    "https://cdn0.iconfinder.com/data/icons/children-game-sports/229/children-games-sport-004-512.png";
 }
 
 function onResults(results) {

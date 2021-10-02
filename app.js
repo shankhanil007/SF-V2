@@ -19,7 +19,7 @@ const cors = require("cors");
 // };
 
 mongoose.connect(
-  "mongodb+srv://shankhanil007:12345@cluster0.asria.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongodb+srv://shankhanil007:12345@cluster0.azmz3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 );
 
