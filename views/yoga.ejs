@@ -30,11 +30,7 @@
 <div class="row">
   <p id="notification" hidden></p>
   <div class="entry-modal" id="entry-modal">
-    <p>Start Yoga</p>
     <div class="mt-3">
-      <button class="btn btn-primary mb-2" onclick="join()">
-        Turn on video
-      </button>
       <div>
         <label for="Yoga Poses" class="form-label">Yoga Poses</label>
         <select id="pose" name="time" class="form-select" required>
@@ -56,6 +52,9 @@
       <!-- Local Video Element-->
       <video class="input_video" style="display: none"></video>
       <canvas class="output_canvas" width="500px" height="450px"></canvas>
+      <button class="btn btn-primary mb-2" onclick="join()">
+        Turn on video
+      </button>
     </div>
     <div class="col-md-7">
       <div class="row">
