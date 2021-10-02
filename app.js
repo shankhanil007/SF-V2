@@ -266,6 +266,17 @@ app.get("/:id/yoga", isLoggedIn, function (req, res) {
   });
 });
 
+app.get("/:id/yoga_compete", isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, details) {
+    if (err) console.log(err);
+    else {
+      res.render("yoga_compete", {
+        call: call,
+      });
+    }
+  });
+});
+
 app.get("/:id/leaderboard", function (req, res) {
   leaderBoard.find({ room: req.params.id }, function (err, details) {
     if (err) console.log(err);
