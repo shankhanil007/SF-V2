@@ -58,13 +58,16 @@ function find_angle(A, B, C) {
 }
 
 function fetchResult() {
-  fetch(`http://localhost:3000/${socket.id}/updateScore/${score}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
+  fetch(
+    `https://fitness-pro-404.herokuapp.com/${socket.id}/updateScore/${score}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+  )
     .then((response) => response.json())
     .then((json) => {
       socket.emit("update_leaderboard");
@@ -147,7 +150,7 @@ function lifting() {
   counter = 0;
   flag = 0;
   exercise = "lifting";
-  document.getElementById("exerciseType").innerHTML = "Exercise : LIFTING";
+  document.getElementById("exerciseType").innerHTML = "LIFTING";
   document.getElementById("result").innerHTML = "Count : 0";
   document.getElementById("image").src = "/assets/img/2.jpg";
 }
@@ -157,7 +160,7 @@ function skipping() {
   counter = 0;
   flag = 0;
   exercise = "skipping";
-  document.getElementById("exerciseType").innerHTML = "Exercise : SKIPPING";
+  document.getElementById("exerciseType").innerHTML = "SKIPPING";
   document.getElementById("result").innerHTML = "Count : 0";
   document.getElementById("image").src = "/assets/img/3.png";
 }
@@ -167,7 +170,7 @@ function situps() {
   counter = 0;
   flag = 0;
   exercise = "situps";
-  document.getElementById("exerciseType").innerHTML = "Exercise : SIT UPS";
+  document.getElementById("exerciseType").innerHTML = "SIT UPS";
   document.getElementById("result").innerHTML = "Count : 0";
   document.getElementById("image").src = "/assets/img/13.png";
 }
@@ -181,13 +184,14 @@ function complete() {
   document.getElementById("exerciseType").innerHTML = "COMPLETED";
   document.getElementById("result").innerHTML = "";
   document.getElementById("image").src = "/assets/img/4.jpg";
+  leaderBoard();
 }
 
 function leaderBoard() {
   var winner = "";
   var max = -1;
 
-  fetch(`http://localhost:3000/${room}/leaderboard`, {
+  fetch(`https://fitness-pro-404.herokuapp.com/${room}/leaderboard`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -217,7 +221,7 @@ function leaderBoard() {
         table.appendChild(tr);
       }
 
-      if (gamecount == games.length) {
+      if (finished == true) {
         document.getElementById("winner").innerHTML = "Winner : " + winner;
       }
     });
@@ -321,7 +325,7 @@ function onResults(results) {
     }
   } else if (exercise.localeCompare("situps") == 0 && finished == false) {
     let shoulder = results.poseLandmarks[11].y * 100;
-    console.log(shoulder);
+
     if (shoulder < 50 && flag == 1) {
       flag = 0;
       counter += 1;
@@ -356,13 +360,6 @@ function createRoom() {
   }
   var userid = document.getElementById("user-id").value;
   peer = new Peer();
-  //   {
-  //   key: "peerjs",
-  //   host: "fitness-pro-404.herokuapp.com/",
-  //   port: 443,
-  //   path: "/",
-  //   secure: true,
-  // }
   peer.on("open", (id) => {
     console.log("Peer Connected with ID: ", id);
     userName = document.getElementById("user-name").value;
