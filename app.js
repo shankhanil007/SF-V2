@@ -166,6 +166,10 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/yoga_gallery", (req, res) => {
+  res.render("yoga_gallery");
+});
+
 app.get("/:id/streak", isLoggedIn, (req, res) => {
   User.findById(req.params.id, function (err, details) {
     if (err) console.log(err);
