@@ -24,6 +24,9 @@
   #exerciseDetails {
     margin-bottom: 20px;
   }
+  .plyr--video {
+    width: 70%;
+  }
 </style>
 <%- include('partials/header2'); -%> <%- include('partials/navbar'); -%>
 
@@ -100,34 +103,31 @@
 </div>
 
 <div id="meetArea" style="display: none">
-  <div class="row" id="exerciseDetails">
+  <div class="row mb-4" id="exerciseDetails">
     <div class="col-md-6">
-      <video id="video" style="display: none">
-        <source src="/assets/videos/triangle.mp4" type="video/mp4" />
-      </video>
-      <div
-        id="player"
-        data-plyr-provider="youtube"
-        data-plyr-embed-id="2HTvZp5rPrg"
-        style="width: 70%"
-      ></div>
+      <center>
+        <video id="video" style="display: none">
+          <source src="/assets/videos/triangle.mp4" type="video/mp4" />
+        </video>
+        <div
+          id="player"
+          data-plyr-provider="youtube"
+          data-plyr-embed-id="2HTvZp5rPrg"
+          style="width: 70%"
+        ></div>
+      </center>
     </div>
     <div class="col-md-6">
       <div class="row">
-        <div class="col-md-6">
-          <h3 id="pose_name">Mountain Pose</h3>
-          <button class="btn btn-primary mt-2 mb-5" onclick="play()">
-            Start
-          </button>
-        </div>
-        <div class="col-md-6">
+        <center>
+          <h2>Pose Accuracy</h2>
           <div
             class="pie"
             data-pie='{ "rotation": 90,"percent":0,"colorSlice": "#4caf4f",
-        "colorCircle": "#f1f1f1",
-        "fontWeight": 100 }'
+      "colorCircle": "#f1f1f1",
+      "fontWeight": 100 }'
           ></div>
-        </div>
+        </center>
       </div>
     </div>
   </div>
@@ -141,6 +141,13 @@
       <div id="video-grid"></div>
     </div>
   </div>
+  <button
+    class="btn btn-primary mt-3"
+    style="margin-left: 70px"
+    onclick="play()"
+  >
+    Start
+  </button>
 </div>
 
 <%-include('partials/footer1'); -%>

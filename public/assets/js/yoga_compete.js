@@ -26,7 +26,7 @@ const controls = [
 ];
 const pose_data = [
   { pose: "mountain", stop_time: "1.217", video_url: "2HTvZp5rPrg" },
-  { pose: "triangle", stop_time: "1.933", video_url: "2JXjoNLYvxc" },
+  { pose: "triangle1", stop_time: "1.933", video_url: "2JXjoNLYvxc" },
   { pose: "tree", stop_time: "0.683", video_url: "Dic293YNJI8" },
   { pose: "cobra", stop_time: "1.183", video_url: "MaFPNfHlaOk" },
 ];
@@ -205,6 +205,7 @@ function createRoom() {
     else if (document.getElementById("Triangle").checked == true)
       pose_index = 1;
 
+    console.log(pose_index);
     addVideoURL(pose_data[pose_index].video_url);
 
     getUserMedia(

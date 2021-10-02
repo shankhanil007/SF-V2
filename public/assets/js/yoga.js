@@ -19,7 +19,7 @@ const controls = [
 
 const pose_data = [
   { pose: "mountain", stop_time: "1.217", video_url: "2HTvZp5rPrg" },
-  { pose: "triangle", stop_time: "1.933", video_url: "2JXjoNLYvxc" },
+  { pose: "triangle1", stop_time: "1.933", video_url: "2JXjoNLYvxc" },
   { pose: "tree", stop_time: "0.683", video_url: "Dic293YNJI8" },
   { pose: "cobra", stop_time: "1.183", video_url: "MaFPNfHlaOk" },
 ];
@@ -38,10 +38,14 @@ var speak_count = 0;
 document.getElementById("pose").addEventListener("change", () => {
   pose_index = parseInt(document.getElementById("pose").value);
   addVideoURL(pose_data[pose_index].video_url);
+  var video = document.getElementById("video");
+  video.currentTime = 0;
   percentage = 0;
   percentage_meter(0);
-  document.getElementById("pose_name").innerHTML =
-    pose_data[pose_index].pose + " pose";
+  if (pose_index == 1) {
+    document.getElementById("mountain").style.display = "none";
+    document.getElementById("triangle").style.display = "block";
+  }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
