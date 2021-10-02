@@ -31,14 +31,16 @@
   <p id="notification" hidden></p>
   <div class="entry-modal" id="entry-modal">
     <div class="mt-3">
-      <div>
-        <label for="Yoga Poses" class="form-label">Yoga Poses</label>
-        <select id="pose" name="time" class="form-select" required>
-          <option value="0">Mountain</option>
-          <option value="1">Triangle</option>
-          <option value="2">Tree</option>
-          <option value="3">Cobra</option>
-        </select>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="Yoga Poses" class="form-label">Yoga Poses</label>
+          <select id="pose" name="time" class="form-select" required>
+            <option value="0">Mountain</option>
+            <option value="1">Triangle</option>
+            <option value="2">Tree</option>
+            <option value="3">Cobra</option>
+          </select>
+        </div>
       </div>
 
       <button class="btn btn-primary mt-2 mb-5" onclick="play()">Start</button>
@@ -57,19 +59,28 @@
       </button>
     </div>
     <div class="col-md-7">
-      <div class="row">
-        <div class="col-md-6">
-          <h3 id="pose_name">Mountain Pose</h3>
-        </div>
-        <div class="col-md-6">
+      <div class="row mb-2">
+        <center>
+          <video id="video" style="display: none">
+            <source src="/assets/videos/triangle.mp4" type="video/mp4" />
+          </video>
           <div
-            class="pie"
-            data-pie='{ "rotation": 90,"percent":0,"colorSlice": "#4caf4f",
+            id="player"
+            data-plyr-provider="youtube"
+            data-plyr-embed-id="2HTvZp5rPrg"
+          ></div>
+        </center>
+      </div>
+
+      <center>
+        <div
+          class="pie"
+          data-pie='{ "rotation": 90,"percent":0,"colorSlice": "#4caf4f",
         "colorCircle": "#f1f1f1",
         "fontWeight": 100 }'
-          ></div>
-        </div>
-      </div>
+        ></div>
+      </center>
+
       <div class="row">
         <video id="video" style="display: none">
           <source src="/assets/videos/triangle.mp4" type="video/mp4" />
