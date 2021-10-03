@@ -58,16 +58,13 @@ function find_angle(A, B, C) {
 }
 
 function fetchResult() {
-  fetch(
-    `https://fitness-pro-404.herokuapp.com/${socket.id}/updateScore/${score}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }
-  )
+  fetch(`https://streak-fit.herokuapp.com/${socket.id}/updateScore/${score}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
     .then((response) => response.json())
     .then((json) => {
       socket.emit("update_leaderboard");
@@ -191,7 +188,7 @@ function leaderBoard() {
   var winner = "";
   var max = -1;
 
-  fetch(`https://fitness-pro-404.herokuapp.com/${room}/leaderboard`, {
+  fetch(`https://streak-fit.herokuapp.com/${room}/leaderboard`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
