@@ -110,8 +110,15 @@ function play() {
         count--;
       }
       setTimeout(function () {
-        percentage_meter(percentage);
-        player.play();
+        if (percentage == 0) {
+          const msg = new SpeechSynthesisUtterance(
+            "Incorrect Pose. Please perform the correct pose!"
+          );
+          window.speechSynthesis.speak(msg);
+        } else {
+          percentage_meter(percentage);
+          player.play();
+        }
       }, 5000);
     }
   });
