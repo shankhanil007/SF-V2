@@ -184,6 +184,20 @@ pose.setOptions({
   minTrackingConfidence: 0.5,
 });
 pose.onResults(onResults);
+
+function model() {
+  let video = document.getElementById("local-video");
+  video.style.display = "none";
+  canvasElement.style.display = "block";
+  const camera = new Camera(video, {
+    onFrame: async () => {
+      await pose.send({ image: video });
+    },
+    width: 500,
+    height: 450,
+  });
+  camera.start();
+}
 //----------------------------------------------------------------------------------------
 
 function createRoom() {
@@ -224,9 +238,9 @@ function createRoom() {
   peer.on("call", (call) => {
     call.answer(local_stream);
     const video = document.createElement("video");
-    video.setAttribute("id", call.peer);
+    // video.setAttribute("id", call.peer);
     call.on("stream", (stream) => {
-      setRemoteStream(stream, video);
+      setRemoteStream(stream, video, call.peer);
     });
     currentPeer = call;
   });
@@ -271,9 +285,9 @@ function joinRoom() {
           // Answer the call, providing our mediaStream
           call.answer(local_stream);
           const video = document.createElement("video");
-          video.setAttribute("id", call.peer);
+          // video.setAttribute("id", call.peer);
           call.on("stream", (stream) => {
-            setRemoteStream(stream, video);
+            setRemoteStream(stream, video, call.peer);
           });
         });
 
@@ -281,9 +295,9 @@ function joinRoom() {
         call.peers[room].forEach(function (id) {
           const calls = peer.call(id, stream);
           const video = document.createElement("video");
-          video.setAttribute("id", id);
+          // video.setAttribute("id", id);
           calls.on("stream", (stream) => {
-            setRemoteStream(stream, video);
+            setRemoteStream(stream, video, id);
           });
           calls.on("close", () => {
             console.log("Closed");
@@ -306,17 +320,17 @@ function setLocalStream(stream) {
   video.playsInline = true;
   video.muted = true;
 
-  const camera = new Camera(video, {
-    onFrame: async () => {
-      await pose.send({ image: video });
-    },
-    width: 500,
-    height: 450,
-  });
-  camera.start();
+  // const camera = new Camera(video, {
+  //   onFrame: async () => {
+  //     await pose.send({ image: video });
+  //   },
+  //   width: 500,
+  //   height: 450,
+  // });
+  // camera.start();
 }
 
-function setRemoteStream(stream, video) {
+function setRemoteStream(stream, video, id) {
   video.srcObject = stream;
   video.autoplay = true;
   video.playsInline = true;
@@ -324,9 +338,30 @@ function setRemoteStream(stream, video) {
 
   // video.srcObject = stream;
   // video.play();
-  video.style.width = "40%";
+  video.style.width = "70%";
   video.style.margin = "1.5em";
-  videoGrid.append(video);
+  video.style.marginBottom = "10px";
+
+  var name = "";
+
+  fetch(`http://localhost:3000/decodepeer/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      name = json.userName;
+      const div1 = document.createElement("div");
+      div1.setAttribute("id", id);
+      const div2 = document.createElement("span");
+      div2.innerHTML += `<br><h5 style="margin-left: 1.5em">${name}</h5>`;
+      div1.appendChild(video);
+      div1.appendChild(div2);
+      videoGrid.appendChild(div1);
+    });
 }
 
 function hideModal() {

@@ -156,18 +156,23 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
-      <video
-        id="local-video"
-        style="display: true; width: 500px; height: 450px"
-      ></video>
-      <canvas
-        class="output_canvas"
-        width="500px"
-        style="display: none"
-      ></canvas>
-      <br />
-      <button class="btn btn-primary mb-2" onclick="model()">Load Model</button>
+    <div
+      class="col-md-6"
+      style="display: flex; align-items: center; justify-content: center"
+    >
+      <div>
+        <video id="local-video" style="display: true; width: 500px"></video>
+        <canvas
+          class="output_canvas"
+          width="500px"
+          height="450px"
+          style="display: none"
+        ></canvas>
+        <br />
+        <button class="btn btn-primary mb-2" onclick="model()">
+          Load Model
+        </button>
+      </div>
     </div>
     <div class="col-md-6 d-flex justify-content-center">
       <div id="video-grid" class="d-flex"></div>

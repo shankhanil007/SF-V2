@@ -133,21 +133,35 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6 d-flex justify-content-center">
-      <video id="local-video" style="display: none"></video>
-      <canvas class="output_canvas" width="500px" height="450px"></canvas>
+    <div
+      class="col-md-6"
+      style="display: flex; align-items: center; justify-content: center"
+    >
+      <div>
+        <video id="local-video" style="display: true; width: 500px"></video>
+        <canvas
+          class="output_canvas"
+          width="500px"
+          height="450px"
+          style="display: none"
+        ></canvas>
+        <br />
+        <button class="btn btn-primary mb-2" onclick="model()">
+          Load Model
+        </button>
+        <button
+          class="btn btn-primary mb-2"
+          style="margin-left: 20px"
+          onclick="play()"
+        >
+          Start
+        </button>
+      </div>
     </div>
     <div class="col-md-6 d-flex justify-content-center">
-      <div id="video-grid"></div>
+      <div id="video-grid" class="d-flex"></div>
     </div>
   </div>
-  <button
-    class="btn btn-primary mt-3"
-    style="margin-left: 70px"
-    onclick="play()"
-  >
-    Start
-  </button>
 </div>
 
 <%-include('partials/footer1'); -%>
