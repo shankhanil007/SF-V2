@@ -41,6 +41,7 @@ const server = app.listen(process.env.PORT || 3000, () =>
 
 var call = Call.create();
 const users = {};
+const decode_peer = {};
 
 const io = require("socket.io")(server);
 
@@ -48,6 +49,7 @@ io.on("connection", (socket) => {
   console.log("Socket Connected");
   socket.on("new-user", ({ id, room, userName }) => {
     users[socket.id] = { id, room };
+    decode_peer[id] = { userName };
     call.addPeer(id, room);
     var entry = new leaderBoard({
       socketid: socket.id,
@@ -303,6 +305,12 @@ app.get("/:id/updateScore/:score", function (req, res) {
       res.json("success");
     }
   });
+});
+
+app.get("/decodepeer/:peerid", function (req, res) {
+  const id = req.params.peerid;
+  const name = decode_peer[id];
+  res.json(name);
 });
 
 // const port = process.env.PORT || 3000;
