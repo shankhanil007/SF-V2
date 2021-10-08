@@ -75,7 +75,7 @@ body {
 }
 
 .squares li {
-  background-color: #ebedf0;
+  background-color: #dcddde;
 }
 
 .squares li[data-level="1"] {
