@@ -346,6 +346,20 @@ pose.setOptions({
   minTrackingConfidence: 0.5,
 });
 pose.onResults(onResults);
+
+function model() {
+  let video = document.getElementById("local-video");
+  video.style.display = "none";
+  canvasElement.style.display = "block";
+  const camera = new Camera(video, {
+    onFrame: async () => {
+      await pose.send({ image: video });
+    },
+    width: 500,
+    height: 450,
+  });
+  camera.start();
+}
 //----------------------------------------------------------------------------------------
 
 function createRoom() {
