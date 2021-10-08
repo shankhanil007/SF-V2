@@ -344,7 +344,7 @@ function setRemoteStream(stream, video, id) {
 
   var name = "";
 
-  fetch(`https://streak-fit.herokuapp.com/decodepeer/${id}`, {
+  fetch(`http://localhost:3000/decodepeer/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
