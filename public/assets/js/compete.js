@@ -216,10 +216,9 @@ function leaderBoard() {
         tr.appendChild(td1);
         tr.appendChild(td3);
         table.appendChild(tr);
-      }
-
-      if (finished == true) {
-        document.getElementById("winner").innerHTML = "Winner : " + winner;
+        if (finished == true) {
+          document.getElementById("winner").innerHTML = "Winner : " + winner;
+        }
       }
     });
 }
@@ -481,6 +480,7 @@ function joinRoom() {
 }
 
 function setLocalStream(stream) {
+  leaderBoard();
   let video = document.getElementById("local-video");
   video.srcObject = stream;
   video.autoplay = true;
