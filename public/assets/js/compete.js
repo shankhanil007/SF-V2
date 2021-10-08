@@ -58,7 +58,7 @@ function find_angle(A, B, C) {
 }
 
 function fetchResult() {
-  fetch(`http://localhost:3000/${socket.id}/updateScore/${score}`, {
+  fetch(`https://streak-fit.herokuapp.com/${socket.id}/updateScore/${score}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -188,7 +188,7 @@ function leaderBoard() {
   var winner = "";
   var max = -1;
 
-  fetch(`http://localhost:3000/${room}/leaderboard`, {
+  fetch(`https://streak-fit.herokuapp.com/${room}/leaderboard`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -511,7 +511,7 @@ function setRemoteStream(stream, video, id) {
 
   var name = "";
 
-  fetch(`http://localhost:3000/decodepeer/${id}`, {
+  fetch(`https://streak-fit.herokuapp.com/decodepeer/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
